@@ -167,3 +167,75 @@ Then(/^My Estimated long garage cost should be correct 3$/, function () {
   expect(Mainpage.ParkingCost.getText()).to.equal("$ 82.00");
   console.log(Mainpage.CalculatedTime.getText());
 });
+
+//10
+When(/^I Write my long surface Ticket Down$/, function () {
+  Mainpage.createTicket(4, "7/1/2020", "9:00", "7/1/2020", "13:00");
+
+  expect(Mainpage.selectParkingLot.getValue()).to.equal("Long-Surface");
+  expect(Mainpage.inputStartingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputStartingTime.getValue()).to.equal("9:00");
+  expect(Mainpage.inputLeavingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputLeavingTime.getValue()).to.equal("13:00");
+
+  Mainpage.submit();
+});
+
+Then(/^My Estimated long surface Parking Cost should show up$/, function () {
+  expect(Mainpage.ParkingCost.getText()).to.equal("$ 8.00");
+  console.log(Mainpage.CalculatedTime.getText());
+});
+
+//11
+When(/^I Write my long surface Ticket Down 2$/, function () {
+  Mainpage.createTicket(4, "7/1/2020", "9:00", "7/1/2020", "18:00");
+
+  expect(Mainpage.selectParkingLot.getValue()).to.equal("Long-Surface");
+  expect(Mainpage.inputStartingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputStartingTime.getValue()).to.equal("9:00");
+  expect(Mainpage.inputLeavingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputLeavingTime.getValue()).to.equal("18:00");
+
+  Mainpage.submit();
+});
+
+Then(/^My Estimated long surface cost should be correct$/, function () {
+  expect(Mainpage.ParkingCost.getText()).to.equal("$ 10.00");
+  console.log(Mainpage.CalculatedTime.getText());
+});
+
+//12
+When(/^I Write my long surface Ticket Down 3$/, function () {
+  Mainpage.createTicket(4, "7/1/2020", "9:00", "7/7/2020", "9:00");
+
+  expect(Mainpage.selectParkingLot.getValue()).to.equal("Long-Surface");
+  expect(Mainpage.inputStartingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputStartingTime.getValue()).to.equal("9:00");
+  expect(Mainpage.inputLeavingDate.getValue()).to.equal("7/7/2020");
+  expect(Mainpage.inputLeavingTime.getValue()).to.equal("9:00");
+
+  Mainpage.submit();
+});
+
+Then(/^My Estimated long surface cost should be correct 2$/, function () {
+  expect(Mainpage.ParkingCost.getText()).to.equal("$ 60.00");
+  console.log(Mainpage.CalculatedTime.getText());
+});
+
+//13
+When(/^I Write my long surface Ticket Down 4$/, function () {
+  Mainpage.createTicket(4, "7/1/2020", "9:00", "7/9/2020", "13:00");
+
+  expect(Mainpage.selectParkingLot.getValue()).to.equal("Long-Surface");
+  expect(Mainpage.inputStartingDate.getValue()).to.equal("7/1/2020");
+  expect(Mainpage.inputStartingTime.getValue()).to.equal("9:00");
+  expect(Mainpage.inputLeavingDate.getValue()).to.equal("7/9/2020");
+  expect(Mainpage.inputLeavingTime.getValue()).to.equal("13:00");
+
+  Mainpage.submit();
+});
+
+Then(/^My Estimated long surface cost should be correct 3$/, function () {
+  expect(Mainpage.ParkingCost.getText()).to.equal("$ 78.00");
+  console.log(Mainpage.CalculatedTime.getText());
+});

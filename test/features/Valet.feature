@@ -39,6 +39,23 @@ Feature: Insert Tickets
         When I Write my long garage Ticket Down 4
         Then My Estimated long garage cost should be correct 3
 
+    Scenario: Insert A Valid long surface Term Ticket
+        When I Write my long surface Ticket Down
+        Then My Estimated long surface Parking Cost should show up
+
+    Scenario: Insert A Valid long surface Term Ticket 2
+        When I Write my long surface Ticket Down 2
+        Then My Estimated long surface cost should be correct
+
+    Scenario: Insert A Valid long surface Term Ticket 3
+        When I Write my long surface Ticket Down 3
+        Then My Estimated long surface cost should be correct 2
+
+    Scenario: Insert A Valid long surface Term Ticket 4
+        When I Write my long surface Ticket Down 4
+        Then My Estimated long surface cost should be correct 3
+
+
 
 
 
