@@ -55,6 +55,22 @@ Feature: Insert Tickets
         When I Write my long surface Ticket Down 4
         Then My Estimated long surface cost should be correct 3
 
+    Scenario: Insert A Valid economy Term Ticket
+        When I Write my economy Ticket Down
+        Then My Estimated economy Parking Cost should show up
+
+    Scenario: Insert A Valid economy Term Ticket 2
+        When I Write my economy Ticket Down 2
+        Then My Estimated economy cost should be correct
+
+    Scenario: Insert A Valid economy Term Ticket 3
+        When I Write my economy Ticket Down 3
+        Then My Estimated economy cost should be correct 2
+
+    Scenario: Insert A Valid economy Term Ticket 4
+        When I Write my economy Ticket Down 4
+        Then My Estimated economy cost should be correct 3
+
 
 
 
