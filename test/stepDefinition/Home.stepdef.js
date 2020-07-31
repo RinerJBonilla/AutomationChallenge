@@ -1,12 +1,33 @@
 import { Given, Then, When } from "cucumber";
 import { expect } from "chai";
 import Mainpage from "../pageobjects/Main.page";
+import FormatValidator from "../../lib/FormatValidator";
 
 Given(/^I open the site$/, function () {
   browser.url("http://www.shino.de/parkcalc/");
 });
 
 //1
+When(/^I fill up the form with the correct data$/, function () {
+  Mainpage.createTicket(0, "7/1/2020", "9:00", "7/2/2020", "9:00");
+  Mainpage.submit();
+});
+
+Then(
+  /^The data should be displayed alongside the estimated cost$/,
+  function () {
+    expect(Mainpage.selectParkingLot.getValue()).to.equal("Valet");
+    expect(Mainpage.inputStartingDate.getValue()).to.equal("7/1/2020");
+    expect(Mainpage.inputStartingTime.getValue()).to.equal("9:00");
+    expect(Mainpage.inputLeavingDate.getValue()).to.equal("7/2/2020");
+    expect(Mainpage.inputLeavingTime.getValue()).to.equal("9:00");
+    expect(Mainpage.ParkingCost.getText()).to.equal("$ 18.00");
+
+    expect(Mainpage.GotError.isExisting()).to.equal(false);
+  }
+);
+
+//2
 When(/^I type my ticket without defining the dates$/, function () {
   Mainpage.createTicket(0, null, "9:00", null, "9:00");
   Mainpage.submit();
@@ -18,7 +39,7 @@ Then(/^It should throw an Error notifing date formatting$/, function () {
   );
 });
 
-//2
+//3
 When(
   /^I type my ticket and leaving date is before starting date$/,
   function () {
@@ -32,3 +53,51 @@ Then(/^It should throw an Error notifing bad leaving date$/, function () {
     "ERROR! YOUR LEAVING DATE OR TIME IS BEFORE YOUR STARTING DATE OR TIME"
   );
 });
+
+//4
+When(/^I fill the form with invalid date formats$/, function () {
+  Mainpage.createTicket(0, "7-99-2020", "9:00", "77/1/2020", "9:00");
+
+  let val;
+  val = FormatValidator.validateDateFormat(
+    Mainpage.inputStartingDate.getValue()
+  );
+  expect(val).to.equal(false);
+
+  val = FormatValidator.validateDateFormat(
+    Mainpage.inputLeavingDate.getValue()
+  );
+  expect(val).to.equal(false);
+  Mainpage.submit();
+});
+
+Then(
+  /^It should display an Error explaing the invalidness of the date format$/,
+  function () {
+    expect(Mainpage.GotError.isExisting()).to.equal(true);
+  }
+);
+
+//5
+When(/^I fill the form with invalid time formats$/, function () {
+  Mainpage.createTicket(0, "7/1/2020", "99:00", "7/2/2020", "900");
+
+  let val;
+  val = FormatValidator.validateTimeFormat(
+    Mainpage.inputStartingTime.getValue()
+  );
+  expect(val).to.equal(false);
+
+  val = FormatValidator.validateTimeFormat(
+    Mainpage.inputLeavingTime.getValue()
+  );
+  expect(val).to.equal(false);
+  Mainpage.submit();
+});
+
+Then(
+  /^It should display an Error explaing the invalidness of the time format$/,
+  function () {
+    expect(Mainpage.GotError.isExisting()).to.equal(true);
+  }
+);
