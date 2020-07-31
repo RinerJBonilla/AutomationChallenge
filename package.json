@@ -4,7 +4,8 @@
   "description": "tesy",
   "main": "index.js",
   "scripts": {
-    "test": "npx wdio wdio.conf.js"
+    "local": "npx wdio wdio.conf.js",
+    "test": "./node_modules/.bin/mocha --require @babel/register lib/FormatValidator.test.js"
   },
   "author": "rainer",
   "license": "ISC",
@@ -21,8 +22,10 @@
     "@wdio/junit-reporter": "^6.3.6",
     "@wdio/local-runner": "^6.3.6",
     "@wdio/selenium-standalone-service": "^6.1.14",
+    "@wdio/spec-reporter": "^6.3.6",
     "@wdio/sync": "^6.3.6",
     "chai": "^4.2.0",
-    "cucumber": "^6.0.5"
+    "cucumber": "^6.0.5",
+    "mocha": "^8.1.0"
   }
 }
