@@ -26,13 +26,30 @@ class Mainpage {
     return $("/html/body/form/table/tbody/tr[4]/td[2]/span[2]/b");
   }
 
-  createTicket(type, startingDate, startingTime, leavingDate, leavingTime) {
-    this.selectParkingLot.selectByIndex(type);
+  get GotError() {
+    return $("/html/body/form/table/tbody/tr[4]/td[2]/b");
+  }
 
-    this.inputStartingDate.setValue(startingDate);
-    this.inputStartingTime.setValue(startingTime);
-    this.inputLeavingDate.setValue(leavingDate);
-    this.inputLeavingTime.setValue(leavingTime);
+  createTicket(type, startingDate, startingTime, leavingDate, leavingTime) {
+    if (type) {
+      this.selectParkingLot.selectByIndex(type);
+    }
+
+    if (startingDate) {
+      this.inputStartingDate.setValue(startingDate);
+    }
+
+    if (startingTime) {
+      this.inputStartingTime.setValue(startingTime);
+    }
+
+    if (leavingDate) {
+      this.inputLeavingDate.setValue(leavingDate);
+    }
+
+    if (leavingTime) {
+      this.inputLeavingTime.setValue(leavingTime);
+    }
   }
 
   submit() {

@@ -1,4 +1,6 @@
-Feature: Insert Tickets
+Feature: Validate Inputs when Creating Tickets
+    As I User, I should be able register my Tickets
+    and being shown my accurate estimated cost
 
     Background:
         Given I open the site
@@ -70,12 +72,3 @@ Feature: Insert Tickets
     Scenario: Insert A Valid economy Term Ticket 4
         When I Write my economy Ticket Down 4
         Then My Estimated economy cost should be correct 3
-
-
-
-
-
-
-
-
-

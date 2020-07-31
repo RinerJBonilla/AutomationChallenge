@@ -1,10 +1,6 @@
-import { Given, Then, When } from "cucumber";
+import { Then, When } from "cucumber";
 import { expect } from "chai";
 import Mainpage from "../pageobjects/Main.page";
-
-Given(/^I open the site$/, function () {
-  browser.url("http://www.shino.de/parkcalc/");
-});
 
 //1
 When(/^I type my valet ticket down$/, function () {
@@ -311,3 +307,7 @@ Then(/^My Estimated economy cost should be correct 3$/, function () {
   expect(Mainpage.ParkingCost.getText()).to.equal("$ 72.00");
   console.log(Mainpage.CalculatedTime.getText());
 });
+
+/*
+Functionality and bugs
+*/
