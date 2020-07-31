@@ -24,3 +24,11 @@ Feature: Validation and Bugs
     Scenario: Should not acccept Invalid Date Fortmats
         When I fill the form with invalid time formats
         Then It should display an Error explaing the invalidness of the time format
+
+    Scenario: Should not acccept Invalid Date Types
+        When I fill the form with invalid date types
+        Then It should display an Error explaing the invalidness of the date type
+
+    Scenario: Should not acccept Invalid Date Types
+        When I fill the form with invalid time types
+        Then It should display an Error explaing the invalidness of the time type

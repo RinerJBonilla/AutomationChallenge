@@ -9,7 +9,20 @@ Given(/^I open the site$/, function () {
 
 //1
 When(/^I fill up the form with the correct data$/, function () {
-  Mainpage.createTicket(0, "7/1/2020", "9:00", "7/2/2020", "9:00");
+  const sDate = "7/1/2020";
+  const sTime = "9:00";
+  const lDate = "7/2/2020";
+  const lTime = "9:00";
+
+  expect(FormatValidator.validateDateFormat(sDate)).to.equal(true);
+
+  expect(FormatValidator.validateTimeFormat(sTime)).to.equal(true);
+
+  expect(FormatValidator.validateDateFormat(lDate)).to.equal(true);
+
+  expect(FormatValidator.validateTimeFormat(lTime)).to.equal(true);
+
+  Mainpage.createTicket(0, sDate, sTime, lDate, lTime);
   Mainpage.submit();
 });
 
@@ -97,6 +110,54 @@ When(/^I fill the form with invalid time formats$/, function () {
 
 Then(
   /^It should display an Error explaing the invalidness of the time format$/,
+  function () {
+    expect(Mainpage.GotError.isExisting()).to.equal(true);
+  }
+);
+
+//6
+When(/^I fill the form with invalid date types$/, function () {
+  Mainpage.createTicket(0, "hello", "9:00", "45c", "9:00");
+
+  let val;
+  val = FormatValidator.validateDateFormat(
+    Mainpage.inputStartingDate.getValue()
+  );
+  expect(val).to.equal(false);
+
+  val = FormatValidator.validateDateFormat(
+    Mainpage.inputLeavingDate.getValue()
+  );
+  expect(val).to.equal(false);
+  Mainpage.submit();
+});
+
+Then(
+  /^It should display an Error explaing the invalidness of the date type$/,
+  function () {
+    expect(Mainpage.GotError.isExisting()).to.equal(true);
+  }
+);
+
+//7
+When(/^I fill the form with invalid time types$/, function () {
+  Mainpage.createTicket(0, "7/1/2020", "h00101010101", "7/2/2020", "notXfound");
+
+  let val;
+  val = FormatValidator.validateTimeFormat(
+    Mainpage.inputStartingTime.getValue()
+  );
+  expect(val).to.equal(false);
+
+  val = FormatValidator.validateTimeFormat(
+    Mainpage.inputLeavingTime.getValue()
+  );
+  expect(val).to.equal(false);
+  Mainpage.submit();
+});
+
+Then(
+  /^It should display an Error explaing the invalidness of the time type$/,
   function () {
     expect(Mainpage.GotError.isExisting()).to.equal(true);
   }
