@@ -4,14 +4,14 @@ QA Challenge Acklen Avenue
 
 In the project directory, you can run:
 
-### `npm init`
+### `npm run init`
 
 Build the project<br />
 
-### `npm test`
+### `npm run test`
 
 Run the tests for our tool for validation<br />
 
-### `npm local`
+### `npm run local`
 
 Run the tests for the web page and creates reports by Junit<br />
