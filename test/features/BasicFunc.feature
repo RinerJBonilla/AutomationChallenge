@@ -17,11 +17,11 @@ Feature: Validation and Bugs
         When I type my ticket and leaving date is before starting date
         Then It should throw an Error notifing bad leaving date
 
-    Scenario: Should not acccept Invalid Date Fortmats
+    Scenario: Should not acccept Invalid Date Formats
         When I fill the form with invalid date formats
         Then It should display an Error explaing the invalidness of the date format
 
-    Scenario: Should not acccept Invalid Date Fortmats
+    Scenario: Should not acccept Invalid Time Formats
         When I fill the form with invalid time formats
         Then It should display an Error explaing the invalidness of the time format
 
@@ -29,6 +29,6 @@ Feature: Validation and Bugs
         When I fill the form with invalid date types
         Then It should display an Error explaing the invalidness of the date type
 
-    Scenario: Should not acccept Invalid Date Types
+    Scenario: Should not acccept Invalid Time Types
         When I fill the form with invalid time types
         Then It should display an Error explaing the invalidness of the time type
