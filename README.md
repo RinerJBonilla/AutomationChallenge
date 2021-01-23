@@ -1,4 +1,4 @@
-QA Challenge Acklen Avenue
+QA Challenge
 
 ## Available Scripts
 
